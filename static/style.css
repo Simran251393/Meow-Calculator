@@ -1,0 +1,222 @@
+/* General page styling */
+body {
+    background: linear-gradient(135deg, #1f1c2c, #928dab);
+    font-family: 'Comic Sans MS', cursive, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+/* Cat container */
+.cat-container {
+    position: relative;
+    width: 320px;
+    background: #fffbe7;
+    border-radius: 20px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+    overflow: hidden;
+}
+
+/* Cat ears */
+.cat-ears {
+    position: absolute;
+    top: -40px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 0;
+    border-left: 60px solid transparent;
+    border-right: 60px solid transparent;
+    border-bottom: 60px solid #f8c471;
+}
+
+/* Calculator body */
+.calculator {
+    padding: 20px;
+}
+
+/* Display */
+#display {
+    width: 100%;
+    padding: 15px;
+    font-size: 1.6rem;
+    text-align: right;
+    border: none;
+    border-radius: 10px;
+    background: #ffe6cc;
+    box-shadow: inset 2px 2px 6px rgba(0,0,0,0.1);
+    margin-bottom: 15px;
+    color: #333;
+}
+
+/* Calculator keys */
+.calculator-keys {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+}
+
+/* Paw button base */
+.cat-key, .cat-paw {
+    position: relative;
+    background: #f8c471;
+    border: none;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: transform 0.2s, background 0.2s;
+    box-shadow: 0 5px 10px rgba(0,0,0,0.15);
+}
+
+/* Hover effect */
+.cat-key:hover, .cat-paw:hover {
+    background: #f5b041;
+    transform: scale(1.1);
+}
+
+/* Paw beans (toe beans!) */
+.cat-key::before,
+.cat-key::after,
+.cat-paw::before,
+.cat-paw::after {
+    content: '';
+    position: absolute;
+    background: #ffd9b3;
+    border-radius: 50%;
+}
+
+/* Top-left bean */
+.cat-key::before, .cat-paw::before {
+    width: 14px;
+    height: 14px;
+    top: -6px;
+    left: 8px;
+}
+
+/* Top-right bean */
+.cat-key::after, .cat-paw::after {
+    width: 14px;
+    height: 14px;
+    top: -6px;
+    right: 8px;
+}
+
+/* Add two more beans */
+.cat-key span,
+.cat-paw span {
+    position: absolute;
+    display: block;
+    width: 14px;
+    height: 14px;
+    background: #ffd9b3;
+    border-radius: 50%;
+    top: -10px;
+}
+
+/* Bottom-left bean */
+.cat-key span.bean-left,
+.cat-paw span.bean-left {
+    left: 20px;
+}
+
+/* Bottom-right bean */
+.cat-key span.bean-right,
+.cat-paw span.bean-right {
+    right: 20px;
+}
+
+/* Special buttons */
+.cat-clear {
+    background: #e74c3c !important;
+    color: white;
+}
+.cat-clear:hover {
+    background: #c0392b !important;
+}
+
+/* Equals paw */
+.cat-paw {
+    background: #82e0aa;
+    border-radius: 50%;
+    grid-column: span 2;
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+.cat-paw:hover {
+    background: #58d68d;
+}
+
+/* Cat face below calculator */
+.cat-face {
+    text-align: center;
+    padding: 15px;
+    background: #fff3e0;
+    border-top: 3px dashed #f5b041;
+    position: relative;
+}
+
+.cat-eyes {
+    width: 60px;
+    height: 20px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+}
+.cat-eyes::before,
+.cat-eyes::after {
+    content: '';
+    width: 15px;
+    height: 15px;
+    background: #333;
+    border-radius: 50%;
+    animation: blink 4s infinite;
+}
+#display {
+    width: 100%;
+    min-height: 50px;
+    padding: 15px;
+    font-size: 1.6rem;
+    text-align: center;      /* 👈 center horizontally */
+    display: flex;           /* 👈 enable flexbox */
+    align-items: center;     /* 👈 center vertically */
+    justify-content: center; /* 👈 keep text in the middle */
+    border: none;
+    border-radius: 10px;
+    background: #ffe6cc;
+    box-shadow: inset 2px 2px 6px rgba(0,0,0,0.1);
+    margin-bottom: 15px;
+    color: #333;
+    overflow-x: auto;
+    white-space: nowrap;
+    box-sizing: border-box;
+}
+
+@keyframes blink {
+    0%, 90%, 100% { transform: scaleY(1); }
+    95% { transform: scaleY(0.1); }
+}
+
+.cat-nose {
+    width: 0;
+    height: 0;
+    margin: 5px auto;
+    border-left: 8px solid transparent;
+    border-right: 8px solid transparent;
+    border-top: 10px solid pink;
+}
+
+.cat-whiskers {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 5px;
+}
+.cat-whiskers::before,
+.cat-whiskers::after {
+    content: '≡';
+    font-size: 1.2rem;
+    color: #444;
+}

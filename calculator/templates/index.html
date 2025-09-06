@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Cat Calculator 🐾</title>
+    <!-- Load CSS from Flask static -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="cat-container">
+        <div class="cat-ears"></div>
+        <div class="calculator">
+            <!-- no form POST, everything via JS -->
+            <input type="text" id="display" placeholder="0" readonly>
+            <div class="calculator-keys">
+                <button type="button" onclick="addToDisplay('7')" class="cat-key">7</button>
+                <button type="button" onclick="addToDisplay('8')" class="cat-key">8</button>
+                <button type="button" onclick="addToDisplay('9')" class="cat-key">9</button>
+                <button type="button" onclick="addToDisplay('+')" class="cat-key">+</button>
+
+                <button type="button" onclick="addToDisplay('4')" class="cat-key">4</button>
+                <button type="button" onclick="addToDisplay('5')" class="cat-key">5</button>
+                <button type="button" onclick="addToDisplay('6')" class="cat-key">6</button>
+                <button type="button" onclick="addToDisplay('-')" class="cat-key">-</button>
+
+                <button type="button" onclick="addToDisplay('1')" class="cat-key">1</button>
+                <button type="button" onclick="addToDisplay('2')" class="cat-key">2</button>
+                <button type="button" onclick="addToDisplay('3')" class="cat-key">3</button>
+                <button type="button" onclick="addToDisplay('*')" class="cat-key">*</button>
+
+                <button type="button" onclick="addToDisplay('0')" class="cat-key">0</button>
+                <button type="button" onclick="addToDisplay('.')" class="cat-key">.</button>
+                <button type="button" onclick="calculateResult()" class="key-equals cat-paw">=</button>
+                <button type="button" onclick="addToDisplay('/')" class="cat-key">/</button>
+
+                <button type="button" onclick="clearDisplay()" class="cat-key cat-clear">C</button>
+            </div>
+        </div>
+
+        <div class="cat-face">
+            <div class="cat-eyes"></div>
+            <div class="cat-nose"></div>
+            <div class="cat-whiskers"></div>
+        </div>
+    </div>
+
+    <script>
+        function addToDisplay(value) {
+            const display = document.getElementById('display');
+            display.value += value;
+        }
+
+        function clearDisplay() {
+            document.getElementById('display').value = '';
+        }
+
+        async function calculateResult() {
+            const display = document.getElementById('display');
+            const expression = display.value;
+
+            try {
+                const response = await fetch("/api/calc", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ expression: expression })
+                });
+
+                const data = await response.json();
+
+                if (response.ok && data.result !== undefined) {
+                    display.value = data.result;
+                    playMeow();
+                } else {
+                    display.value = "Error";
+                }
+            } catch (err) {
+                display.value = "Error";
+            }
+        }
+
+        function playMeow() {
+            const audio = new Audio("https://www.fesliyanstudios.com/play-mp3/387");
+            audio.play();
+        }
+    </script>
+</body>
+</html>
